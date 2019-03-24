@@ -1,0 +1,42 @@
+<div class="window">
+  <div class="header" #header>
+    <div (click)="handleMenuClick($event)" class="burger-container">
+      <div id="burger">
+        <div class="bar topBar"></div>
+        <div class="bar btmBar"></div>
+      </div>
+    </div>
+    <div class="icon icon-apple">
+      <img src="assets/images/apple.svg" alt="" />
+    </div>
+    <ul class="menu">
+      <li *ngFor="let link of links" class="menu-item">
+        <div class="menu-item-div">
+          <div class="menu-item-div-nested">
+            <div [ngStyle]="{ backgroundColor: link.tabColor }" class="tab-color"></div>
+            <a href="#">{{ link.name }}</a>
+          </div>
+          <div *ngIf="link.nestedLinks">
+            <span class="white-color">
+              <div class="button__holder" (click)="dropMenu($event, link)">
+                <!-- <h2>Hover me &rarr;</h2> -->
+                <button class="plus"></button>
+              </div>
+            </span>
+          </div>
+        </div>
+        <ul class="dropdown" *ngIf="link.dropdown">
+          <li class="link-dropdown" *ngFor="let link of link.nestedLinks">
+            <a class="nested-link-dropdown" href="">
+              {{ link.name }}
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <div class="shop icon icon-bag">
+      <img src="assets/images/search.svg" alt="" />
+      <img src="assets/images/bell.svg" alt="" />
+    </div>
+  </div>
+</div>
